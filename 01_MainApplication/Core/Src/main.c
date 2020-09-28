@@ -77,8 +77,13 @@ void MX_USB_HOST_Process(void);
   */
 int main(void)
 {
-  /* USER CODE BEGIN 1 */
 
+  /* USER CODE BEGIN 1 */
+//	const int c1 __attribute__((at(0x10000))) = 1; /* RO */
+//	const int c2 __attribute__((at(0x10001))) = 2; /* RO */
+//	const int c3 __attribute__((at(0x10002))) = 3; /* RO */
+//	const int c4 __attribute__((at(0x10003))) = 4; /* RO */
+//	const int descriptor[3] __attribute__((__at__0x0)) = { 1,2,3 };
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -106,7 +111,8 @@ int main(void)
   MX_FATFS_Init();
   MX_USB_HOST_Init();
   /* USER CODE BEGIN 2 */
-  HAL_UART_Transmit(&huart3, "Main application Hello Word\r\n", 29, 100);
+  HAL_GPIO_WritePin(GPIOG, GPIO_PIN_6, GPIO_PIN_SET);
+  HAL_UART_Transmit(&huart3, "SileliS radio main app\r\n", 24, 100);
   /* USER CODE END 2 */
 
   /* Infinite loop */
